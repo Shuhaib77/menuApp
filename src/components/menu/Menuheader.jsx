@@ -1,7 +1,14 @@
 import { Button } from "@material-tailwind/react";
-import React from "react";
+import React, { useState } from "react";
+import Addmenu from "./Addmenu";
 
 function Menuheader() {
+    const [open,setOpen]=useState(false)
+
+    const handle_click=()=>{
+        setOpen(true)
+
+    }
   return (
     <>
       <div>
@@ -42,8 +49,13 @@ function Menuheader() {
             <Button className="bg-black border border-blue-500 hover:bg-blue-500 h-12 w-32">
               Drinks
             </Button>
+            <Button className="bg-black border border-blue-500 hover:bg-blue-500 h-12 w-32" onClick={handle_click}>
+              add Menu
+            </Button>
           </div>
-    
+          {
+            open && <Addmenu setOpen={setOpen}/>
+          }
         </div>
       </div>
     </>
