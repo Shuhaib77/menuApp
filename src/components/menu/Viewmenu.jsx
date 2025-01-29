@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { dataInfo } from "../../redux/menuSlice";
 
 function Viewmenu() {
+  const { items, loading, reject, menuData } = useSelector(
+    (state) => state.menuItems
+  );
+  console.log(menuData);
+
+  // const menu_items=(name)=>{
+  //     useDispatch( dataInfo())
+
+  // }
+  // useEffect(()=>{
+
+  // },[])
+
   return (
     <>
       <div className="relative p-10 lg:p-30">
@@ -11,59 +27,34 @@ function Viewmenu() {
             alt="Decorative Left"
           />
         </div>
+        {menuData.map(() => {
+          return <div></div>;
+        })}
 
         <div className="flex flex-col h-full w-full p-5 lg:p-10 border rounded-lg overflow-auto">
           <div className="flex items-center justify-center lg:mb-20">
-            <h1 className="text-3xl lg:text-5xl text-center font-extrabold">
-              BRUNCH COCKTAILS
-            </h1>
+            {items.slice(0, 1).map((item) => {
+              return (
+                <h1 className="text-3xl lg:text-5xl text-center font-extrabold">
+                  {item.catogery}
+                </h1>
+              );
+            })}
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-            <div className="flex flex-col">
-              <h2 className="text-xl lg:text-2xl font-bold text-white">
-                CINNAMON TOAST CRUNCH..........................$16
-              </h2>
-              <p>
-                Skrewball peanut butter whiskey, vanilla extract, Amaretto,
-                Baileys, egg white, cinnamon
-              </p>
-            </div>
-            <div className="flex flex-col">
-              <h2 className="text-xl lg:text-2xl font-bold text-white">
-                CINNAMON TOAST CRUNCH..........................$16
-              </h2>
-              <p>
-                Skrewball peanut butter whiskey, vanilla extract, Amaretto,
-                Baileys, egg white, cinnamon
-              </p>
-            </div>
-            <div className="flex flex-col">
-              <h2 className="text-xl lg:text-2xl font-bold text-white">
-                CINNAMON TOAST CRUNCH..........................$16
-              </h2>
-              <p>
-                Skrewball peanut butter whiskey, vanilla extract, Amaretto,
-                Baileys, egg white, cinnamon
-              </p>
-            </div>
-            <div className="flex flex-col">
-              <h2 className="text-xl lg:text-2xl font-bold text-white">
-                CINNAMON TOAST CRUNCH..........................$16
-              </h2>
-              <p>
-                Skrewball peanut butter whiskey, vanilla extract, Amaretto,
-                Baileys, egg white, cinnamon
-              </p>
-            </div>
-            <div className="flex flex-col">
-              <h2 className="text-xl lg:text-2xl font-bold text-white">
-                CINNAMON TOAST CRUNCH..........................$16
-              </h2>
-              <p>
-                Skrewball peanut butter whiskey, vanilla extract, Amaretto,
-                Baileys, egg white, cinnamon
-              </p>
-            </div>
+            {items.map((item) => {
+              return (
+                <div className="flex flex-col">
+                  <h2 className="text-xl lg:text-2xl font-bold text-white">
+                    {item.name}..........................${item.price}
+                  </h2>
+                  <p>
+                    Skrewball peanut butter whiskey, vanilla extract, Amaretto,
+                    Baileys, egg white, cinnamon
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
 

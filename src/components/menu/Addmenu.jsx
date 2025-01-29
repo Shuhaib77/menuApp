@@ -7,7 +7,7 @@ function Addmenu({setOpen}) {
  
   return (
     <>
-    <Form setOpen={setOpen}   heading={"ADD MENU "}/>
+    <Form setOpen={setOpen}   heading={"ADD MENU"}/>
     </>
   );
 }

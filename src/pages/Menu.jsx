@@ -1,12 +1,13 @@
 import React from "react";
-import Header from "./Header";
-import Menuheader from "./menu/Menuheader";
-import Viewmenu from "./menu/Viewmenu";
-import Footer from "./Footer";
+import Header from "../components/Header";
+import Menuheader from "../components/menu/Menuheader";
+import Viewmenu from "../components/menu/Viewmenu";
+import Footer from "../components/Footer";
 
 function Menu() {
   return (
     <>
+      
       <div>
         <Header />
       </div>
@@ -20,7 +21,6 @@ function Menu() {
       <div>
         <Footer />
       </div>
-
       <div>
         {/* <img src="https://s3-alpha-sig.figma.com/img/0571/aff9/d875fd6fec8f3801ba095cc39be0e4b1?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=H4vwq1U7XnDOaJ3lr5FKCsvwOCt3piCa60rsSY6IBHlnP7J9TaclErCl2NHRu5yEOr4JJn-XQX99I8K~1l5PCeXxiPZ-ng5jRROHbl1Es47NdlT4NeFI1k2MQ0he9Ot4E98vaewmeG9ZhLYjY-GXyKJo5DVj7RKCuq2Y7DUY6Kv-TnsjJADJwbbIEA3expSyMCzUIiejm~pBQ9KJ8Cm1MOHk77ZDCU4s0xPhGi706zrZe~b3WpvtVS0UZbft21TKYLJY6Mti3qdvfoNIU7H4i9uoadsHRIMJ3jr9iMxLZNbndHr0TUaix9xmAOvRu-KK49wjgYBW1acw5KgNchkG4A__" alt="" />
        

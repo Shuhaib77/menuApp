@@ -1,14 +1,34 @@
 import { Button } from "@material-tailwind/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Addmenu from "./Addmenu";
+import { useDispatch, useSelector } from "react-redux";
+import { dataInfo, menu_data } from "../../redux/menuSlice";
+import AddMenuItem from "./AddMenuItem";
 
 function Menuheader() {
-    const [open,setOpen]=useState(false)
+  const [open, setOpen] = useState(false);
+  const [openMenuItem, setOpenMenuItem] = useState(false);
+  const dispatch = useDispatch();
+  const { items, loading, reject, menuData } = useSelector(
+    (state) => state.menuItems
+  );
+  console.log(items);
+  console.log(menuData);
+  console.log(loading);
 
-    const handle_click=()=>{
-        setOpen(true)
+  const menu_items = (name) => {
+    dispatch(dataInfo({ name }));
+  };
+  useEffect(() => {
+    dispatch(menu_data());
+  }, []);
 
-    }
+  const handle_click = () => {
+    setOpen(true);
+  };
+  const handle_open = () => {
+    setOpenMenuItem(true);
+  };
   return (
     <>
       <div>
@@ -30,7 +50,9 @@ function Menuheader() {
               located below the menu.
             </p>
           </div>
+          
         </div>
+       
 
         <div
           className="h-[100%] "
@@ -39,23 +61,54 @@ function Menuheader() {
               'url("https://s3-alpha-sig.figma.com/img/0571/aff9/d875fd6fec8f3801ba095cc39be0e4b1?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=H4vwq1U7XnDOaJ3lr5FKCsvwOCt3piCa60rsSY6IBHlnP7J9TaclErCl2NHRu5yEOr4JJn-XQX99I8K~1l5PCeXxiPZ-ng5jRROHbl1Es47NdlT4NeFI1k2MQ0he9Ot4E98vaewmeG9ZhLYjY-GXyKJo5DVj7RKCuq2Y7DUY6Kv-TnsjJADJwbbIEA3expSyMCzUIiejm~pBQ9KJ8Cm1MOHk77ZDCU4s0xPhGi706zrZe~b3WpvtVS0UZbft21TKYLJY6Mti3qdvfoNIU7H4i9uoadsHRIMJ3jr9iMxLZNbndHr0TUaix9xmAOvRu-KK49wjgYBW1acw5KgNchkG4A__")',
           }}
         >
+            
+            
           <div className=" flex  justify-center   items-center h-full p-4   gap-4">
-            <Button className="bg-black border border-blue-500 hover:bg-blue-500 h-12 w-32">
-              Drinks
+            {menuData.map((item) => {
+              return (
+                <div>
+                  <Button
+                    className="bg-black border border-blue-500 hover:bg-blue-500 h-12 w-32"
+                    onClick={() => {
+                      menu_items(item.name);
+                    }}
+                  >
+                    {" "}
+                    {item.name}{" "}
+                  </Button>
+                </div>
+              );
+            })}
+             
+             <div className="flex gap-x-2 justify-end items-end ">
+          {" "}
+          <Button
+            className=" bg-blue-500 hover:bg-blue-500 h-12 w-32"
+           
+            onClick={handle_open}
+          > add menu item
+         
+          </Button>
+          <Button
+            className=" bg-blue-500 hover:bg-blue-500 h-12 w-32"
+            onClick={handle_click}
+          >
+            add Menu
+          </Button>
+        </div>
+           
+            {/* Drinks
             </Button>
             <Button className="bg-black border border-blue-500 hover:bg-blue-500 h-12 w-32">
               Drinks
             </Button>
             <Button className="bg-black border border-blue-500 hover:bg-blue-500 h-12 w-32">
               Drinks
-            </Button>
-            <Button className="bg-black border border-blue-500 hover:bg-blue-500 h-12 w-32" onClick={handle_click}>
-              add Menu
-            </Button>
+            </Button> */}
           </div>
-          {
-            open && <Addmenu setOpen={setOpen}/>
-          }
+          
+          {open && <Addmenu setOpen={setOpen} />}
+          {openMenuItem && <AddMenuItem setOpen={openMenuItem} />}
         </div>
       </div>
     </>
